@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Cita Medica</string>
+    <string name="date_format">%d/%02d/%02d</string>
+</resources>
