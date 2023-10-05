@@ -5,7 +5,10 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import com.example.citamedica.Models.Appointment
+import kotlinx.coroutines.awaitAll
+import kotlin.math.log
 
 class AppointmentsDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -60,13 +63,7 @@ class AppointmentsDatabaseHelper(context: Context) : SQLiteOpenHelper(context, D
         val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_USER_ID = ?"
         val db = this.readableDatabase
         val cursor: Cursor?
-
-        try {
-            cursor = db.rawQuery(selectQuery, arrayOf(userId.toString()))
-        } catch (e: Exception) {
-            return ArrayList()
-        }
-
+        cursor = db.rawQuery(selectQuery, arrayOf(userId.toString()))
         var id: Int
         var doctorName: String
         var scheduledDate: String

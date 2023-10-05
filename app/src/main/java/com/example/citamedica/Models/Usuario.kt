@@ -3,9 +3,9 @@ package com.example.citamedica.Models
 import java.io.Serializable
 
 data class Usuario(
-    val id: Int,
-    val nombre: String,
-    val apellido: String,
-    val email: String,
-    val password: String
+    var id: Int,
+    var nombre: String,
+    var apellido: String,
+    var email: String,
+    var password: String
 ) : Serializable

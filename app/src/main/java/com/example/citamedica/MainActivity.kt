@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
             }
+            //Toast.makeText(this, "agregue un cambio", Toast.LENGTH_LONG).show()
         }
     }
 

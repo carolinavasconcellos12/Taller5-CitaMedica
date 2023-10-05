@@ -38,13 +38,11 @@ class RegisterActivity : AppCompatActivity() {
             val password = registroPassword.text.toString()
 
             if (nombre.isNotBlank() && apellido.isNotBlank() && email.isNotBlank() && password.isNotBlank()) {
-                val usuario = Usuario(-1, nombre, apellido, email, password)
-                dbHelper.insertUser(usuario)
-                val userId = usuario.id  // Obtener el ID del usuario
+                val usuario = dbHelper.insertUser(Usuario(-1, nombre, apellido, email, password))
                 Toast.makeText(this, "Estás registrado", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, MenuActivity::class.java)
-                intent.putExtra("userId", userId)  // Pasar el ID del usuario a la actividad del menú
+                intent.putExtra("userId", usuario.id)  // Pasar el ID del usuario a la actividad del menú
                 intent.putExtra("userName", nombre)
                 startActivity(intent)
 

@@ -157,7 +157,6 @@
 
                     <EditText
                         android:id="@+id/et_fecha"
-                        android:onClick="onClickScheduledDate"
                         android:inputType="date"
                         android:focusable="false"
                         android:hint="Seleccione la fecha"
@@ -175,7 +174,6 @@
                     <EditText
                         android:id="@+id/et_hora"
                         android:hint="Seleccione la hora"
-                        android:onClick="OnClickScheduledTime"
                         android:inputType="date"
                         android:focusable="false"
                         android:clickable="true"

@@ -36,7 +36,7 @@ class miSQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         onCreate(db)
     }
 
-    fun insertUser(usuario: Usuario) {
+    fun insertUser(usuario: Usuario): Usuario {
         val data = ContentValues()
         // No es necesario proporcionar un valor para el campo ID, se genera automáticamente
         data.put(COLUMN_USERNAME, usuario.nombre)
@@ -45,8 +45,9 @@ class miSQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         data.put(COLUMN_PASSWORD, usuario.password)
 
         val db = this.writableDatabase
-        db.insert(TABLE_NAME, null, data)
+        usuario.id = db.insert(TABLE_NAME, null, data).toInt()
         db.close()
+        return usuario
     }
 
     fun getUsuarioByEmailAndPassword(email: String, password: String): Usuario? {
