@@ -1,5 +1,6 @@
-package com.example.citamedica
+package com.example.citamedica.DataBase
 
+import com.example.citamedica.Models.Usuario
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -21,7 +22,7 @@ class miSQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     override fun onCreate(db: SQLiteDatabase?) {
         val CREATE_TABLE_USER = ("CREATE TABLE $TABLE_NAME (" +
-                "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," + // Campo ID autoincremental
+                "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$COLUMN_USERNAME TEXT," +
                 "$COLUMN_SURNAME TEXT," +
                 "$COLUMN_EMAIL TEXT," +

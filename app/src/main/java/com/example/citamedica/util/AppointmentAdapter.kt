@@ -1,10 +1,12 @@
-package com.example.citamedica
+package com.example.citamedica.util
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.citamedica.Models.Appointment
+import com.example.citamedica.R
 
 
 class AppointmentAdapter(private val appointments: ArrayList<Appointment>) : RecyclerView.Adapter<AppointmentAdapter.ViewHolder>() {
@@ -28,7 +30,7 @@ class AppointmentAdapter(private val appointments: ArrayList<Appointment>) : Rec
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val appointment = appointments[position]
 
-        holder.tvAppointmentId.text = "Cita Medica N#${appointment.id}"
+        holder.tvAppointmentId.text = "Cita Medica:"
         holder.tvDoctorName.text = appointment.doctorName
         holder.tvScheduledDate.text = "Atención el día  ${appointment.scheduledDate}"
         holder.tvScheduledTime.text = "A las ${appointment.scheduledTime}"

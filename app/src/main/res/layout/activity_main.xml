@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
+            android:textColor="@color/black"
             android:fontFamily="@font/designer"
             android:textSize="60sp"
             android:layout_marginLeft="25dp"
@@ -32,15 +33,18 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="8dp"
             android:text="Ingresa tu correo y contraseña"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/etCorreoLoguin"
+            android:textColorHint="@color/black"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginTop="50dp"
+            android:textColor="@color/black"
             android:hint="Correo Electronico"
             android:inputType="textEmailAddress"
             android:textSize="15sp"
@@ -54,7 +58,9 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginTop="15dp"
+            android:textColorHint="@color/black"
             android:hint="Contraseña"
+            android:textColor="@color/black"
             android:inputType="textPassword"
             android:textSize="15sp"
             android:background="@drawable/edittext_custom"
@@ -95,6 +101,7 @@
 
         <TextView
             android:id="@+id/btn_register"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="¿No tiene una cuenta?"

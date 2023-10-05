@@ -1,4 +1,4 @@
-package com.example.citamedica
+package com.example.citamedica.util
 
 import android.content.Context
 import android.content.SharedPreferences

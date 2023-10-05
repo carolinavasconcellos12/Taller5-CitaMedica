@@ -1,4 +1,4 @@
-package com.example.citamedica
+package com.example.citamedica.util
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
