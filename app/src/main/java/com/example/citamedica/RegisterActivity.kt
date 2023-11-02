@@ -2,6 +2,7 @@ package com.example.citamedica
 
 import com.example.citamedica.Models.Usuario
 import android.content.Intent
+import android.os.Build.VERSION_CODES.R
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -38,15 +39,33 @@ class RegisterActivity : AppCompatActivity() {
             val password = registroPassword.text.toString()
 
             if (nombre.isNotBlank() && apellido.isNotBlank() && email.isNotBlank() && password.isNotBlank()) {
-                val usuario = dbHelper.insertUser(Usuario(-1, nombre, apellido, email, password))
-                Toast.makeText(this, "Estás registrado", Toast.LENGTH_SHORT).show()
+                // Validar que el correo electrónico tenga un formato válido
+                if (isValidEmail(email)) {
+                    // Validar que la contraseña tenga al menos 8 caracteres y al menos un número
+                    if (isValidPassword(password)) {
+                        val existingUser = dbHelper.getUsuarioByEmail(email)
 
-                val intent = Intent(this, MenuActivity::class.java)
-                intent.putExtra("userId", usuario.id)  // Pasar el ID del usuario a la actividad del menú
-                intent.putExtra("userName", nombre)
-                startActivity(intent)
+                        if (existingUser == null) {
+                            // El correo electrónico no está registrado, puedes proceder con el registro
+                            val usuario = dbHelper.insertUser(Usuario(-1, nombre, apellido, email, password))
+                            Toast.makeText(this, "Estás registrado", Toast.LENGTH_SHORT).show()
 
-                clearFields()
+                            val intent = Intent(this, MenuActivity::class.java)
+                            intent.putExtra("userId", usuario.id)  // Pasar el ID del usuario a la actividad del menú
+                            intent.putExtra("userName", nombre)
+                            startActivity(intent)
+
+                            clearFields()
+                        } else {
+                            // El correo electrónico ya está registrado
+                            Toast.makeText(this, "El correo electrónico ya está registrado", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "La contraseña debe tener al menos 8 caracteres y al menos un número", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this, "Ingresa un correo electrónico válido", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
             }
@@ -69,4 +88,14 @@ class RegisterActivity : AppCompatActivity() {
         registroCorreo.text.clear()
         registroPassword.text.clear()
     }
+
+    private fun isValidEmail(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun isValidPassword(password: String): Boolean {
+        // Verificar que la contraseña tenga al menos 8 caracteres y al menos un número
+        return password.length >= 8 && password.any { it.isDigit() }
+    }
 }
+
