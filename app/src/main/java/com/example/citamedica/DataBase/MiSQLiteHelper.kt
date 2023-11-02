@@ -75,4 +75,30 @@ class miSQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         return usuario
     }
+
+    fun getUsuarioByEmail(email: String): Usuario? {
+        val db = readableDatabase
+        val projection = arrayOf(COLUMN_ID, COLUMN_USERNAME, COLUMN_SURNAME, COLUMN_EMAIL, COLUMN_PASSWORD)
+        val selection = "$COLUMN_EMAIL = ?"
+        val selectionArgs = arrayOf(email)
+        val cursor = db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null)
+
+        val usuario: Usuario?
+
+        if (cursor.moveToFirst()) {
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+            val nombre = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USERNAME))
+            val apellido = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_SURNAME))
+            val userEmail = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL))
+            val userPassword = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PASSWORD))
+            usuario = Usuario(id, nombre, apellido, userEmail, userPassword)
+        } else {
+            usuario = null
+        }
+
+        cursor.close()
+        db.close()
+
+        return usuario
+    }
 }
